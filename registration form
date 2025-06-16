@@ -1,0 +1,103 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: Registration(),
+  ));
+}
+
+class Registration extends StatefulWidget {
+  const Registration({super.key});
+
+  @override
+  State<Registration> createState() => _RegistrationState();
+}
+
+class _RegistrationState extends State<Registration> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.teal,
+        title: const Text("Registration Form"),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            
+            children: [
+              const Text(
+                'Welcome to the Registration Form!',
+                style: TextStyle(fontSize: 18),
+              ),
+            const SizedBox(height: 20),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'first name',
+                  hintText: 'enter your first name',
+                  border: OutlineInputBorder(),
+                   prefixIcon: Icon(Icons.person), 
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Last name',
+                  hintText: 'enter your last name',
+                  border: OutlineInputBorder(),
+                   prefixIcon: Icon(Icons.person), 
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: ' phone number',
+                  hintText: 'enter your phone number',
+                  border: OutlineInputBorder(),
+                   prefixIcon: Icon(Icons.phone), 
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'email',
+                  hintText: 'enter your email',
+                  border: OutlineInputBorder(),
+                   prefixIcon: Icon(Icons.email), 
+                ),
+              ),
+              const SizedBox(height: 20),
+            
+              Center(
+  child: ElevatedButton(
+    onPressed: () {
+      if (_formKey.currentState!.validate()) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Processing Data')),
+        );
+      }
+    },
+    style: ElevatedButton.styleFrom(
+      backgroundColor: const Color.fromARGB(255, 243, 69, 56), 
+      foregroundColor: Colors.white, // ✅ Set the text color to white
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+    ),
+    child: const Text('Submit'),
+  ),
+),
+
+              
+            ],
+          ),
+          
+        ),
+      ),
+    );
+  }
+}
